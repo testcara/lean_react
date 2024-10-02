@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Student extends React.Component {
+            state = {
+                name: '',
+                password: '',
+                text: ''
+            }
+
+            handleSubmit = () => {
+                console.log(this.state)
+            }
+
+            handleChange = (e) => {
+                this.setState(
+                    { [e.target.name] : e.target.value }
+                )
+            }
+            render() {
+                let { name, password, text } = this.state
+                return <div>
+                    <form>
+                        姓名：<input type='text' name='name' value={name} onChange={this.handleChange} />
+                        <br />
+                        密码：<input type='password' name='password' value={password} onChange={this.handleChange} />
+                        <br />
+                        <label>备注信息：
+                            <textarea defaultValue={text} onChange={this.handleText}></textarea>
+                        </label>
+                    </form>
+                    <button onClick={this.handleSubmit}>提交</button>
+                </div>
+            }
+        }
+        ReactDOM.render(<Student />, document.getElementById('root'))
+    </script>
+
+</body>
+</html>
