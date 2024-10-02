@@ -50,13 +50,13 @@
             handleText = (e) => {
                 this.setState(
                     {
-                        text: e.target.select
+                        text: e.target.value
                     }
                 )
             }
 
-            handleSubmit = (e) => {
-                console.log(e)
+            handleSubmit = () => {
+                console.log(this.state)
             }
 
             handleSelect1 = (e) => {
