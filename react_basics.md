@@ -2,6 +2,7 @@
 
 - [React Basics](#react-basics)
   - [从 JavaScript 到 React](#从-javascript-到-react)
+  - [核心思想](#核心思想)
   - [基础语法](#基础语法)
     - [组件](#组件)
     - [JSX 编写标签](#jsx-编写标签)
@@ -17,11 +18,17 @@
 
 JavaScript 是一种广泛使用的脚本语言，是Web开发的基础。React 则是一个由 Facebook 开发的开源 JavaScript 库，用于构建用户界面。React依赖于 JavaScript，但提供了更高级别的抽象和工具，以简化UI开发。
 
+React的存在能够很好的解决“构建随着时间数据不断变化的大规模应用程序”。它是当前比较流行的前端框架之一，是基于MVVM设计模式/框架中的视图模型。
+
 React 引入了 JSX，这是 JavaScript 的一种语法扩展，允许在 JavaScript 代码中编写类似 HTML 的标记。JSX 不是必需的，但它是 React 开发中的常见做法，因为它提高了代码的可读性和开发效率。
 
 React 通过组件化的方式，鼓励开发者将 UI 拆分成独立、可复用的组件。每个 React 组件都可以包含 JSX，以声明式地描述其UI结构。
 
 综上所述，React 是建立在 JavaScript 之上的一个库，它利用 JavaScript 的能力，并通过引入 JSX 等特性，为开发者提供了一种更高效、更直观的方式来构建用户界面‌
+
+## 核心思想
+
+封装组件，各个组件维护自己的状态和ui，当状态变更，自动更新和渲染整个组件。
 
 ## 基础语法
 

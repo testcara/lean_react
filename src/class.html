@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root1"></div>
+    <script>
+        // js 中的 class
+        function Person(firstName, lastName){
+            this.firstName = firstName
+            this.lastName = lastName
+        }
+        Person.prototype.fullName = function () {
+            return this.firstName + ' ' + this.lastName
+        }
+        let p = new Person('cara', 'wang')
+        console.log(p.fullName)
+    </script>
+    <script type="text/babel">
+        class Persons {
+            constructor(firstName, lastName){
+                this.firstName = firstName
+                this.lastName = lastName
+            }
+            fullName() {
+                return this.firstName + ' ' + this.lastName
+            }
+        }
+        let ps = new Persons('cara', 'wang')
+        console.log(ps.fullName())
+        // typeof Persons === function
+        // Persons === Persons.prototype.constructor
+    </script>
+</body>
+
+</html>

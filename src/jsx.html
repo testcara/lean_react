@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        .hello {color:red;}
+    </style>
+</head>
+
+<body>
+    <div id="root1"></div>
+    <script type="text/babel">
+
+        // JSX 语法：
+        // 1. 在 html 里面写 js 语法
+        // 2. 在 html 里面自定义属性
+        // 3. {} 里面只能是变量或者表达式
+        var name = 'cara'
+        var flag = false
+        var id = 'id1'
+
+        // 只能有一个父标签
+        var div = <div>
+        <h1 id={id} className='hello'>
+            hello, {name}!
+        </h1>
+        <p>
+            {flag ? 'hello, again':'bye'}
+        </p>
+        </div>
+
+        ReactDOM.render(div, document.getElementById('root1'))
+    </script>
+</body>
+
+</html>
