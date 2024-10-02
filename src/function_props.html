@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root1"></div>
+    <script type="text/babel">
+        function App(props){
+            return <div>
+                <h1>函数组件：props</h1>
+                <p>姓名：{ props.name }</p>
+                <p>性别：女</p>
+                <p>年龄：{ props.age }</p>
+                </div>
+        }
+        ReactDOM.render(<App name="cara li" age="15" />, document.getElementById('root1'))
+        // var obj = {
+        //    name: 'happy li',
+        //    age: '16'
+        //}
+        //ReactDOM.render(<App obj={obj} />, document.getElementById('root1'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Student extends React.Component {
+            state = {
+                name: '',
+                sex: 1,
+                select: 1,
+                select1: '',
+                TextTrackCue: 'none' 
+            }
+
+            handleInput = (e) => {
+                this.setState(
+                    {
+                        name: e.target.value
+                    }
+                )
+            }
+
+            handleRadio = (e) => {
+                this.setState(
+                    {
+                        sex: e.target.value
+                    }
+                )
+            }
+
+            handleSelect = (e) => {
+                this.setState(
+                    {
+                        select: e.target.value
+                    }
+                )
+            }
+
+            handleText = (e) => {
+                this.setState(
+                    {
+                        text: e.target.select
+                    }
+                )
+            }
+
+            handleSubmit = (e) => {
+                console.log(e)
+            }
+
+            handleSelect1 = (e) => {
+                this.setState(
+                    {select1: e.target.value}
+                )
+            }
+            render() {
+                let {name, sex, select, select1, text} = this.state
+                let arr = [
+                    {'id' : 1, 'color' : 'red'},
+                    {'id' : 2, 'color' : 'green'},
+                    {'id' : 3, 'color' : 'orange'}
+                ]
+                return <div>
+                    <form>
+                    姓名：<input type='text' name='name' value={name} onChange={this.handleInput} />
+                    <br/>
+                    <label>性别：
+                        <input type='radio' name='sex' value='1' 
+                        defaultChecked={sex === '1' ? true : false} onChange={this.handleRadio}/>男
+                        <input type='radio' name='sex' value='2' 
+                        defaultChecked={sex === '2' ? true : false} onChange={this.handleRadio}/>女
+                    </label>
+                    <br/>
+                    <label>班级：
+                        <select defaultValue={select} onChange={this.handleSelect}>
+                            <option value='1'>班级1</option>
+                            <option value='2'>班级2</option>
+                            <option value='3'>班级3</option>
+                        </select>
+                    </label>
+                    <br/>
+                    <label>颜色：
+                        <select defaultValue={select1} onChange={this.handleSelect1}>
+                            {
+                                arr.map((item, index) => <option key={item.id} value={item.id}>{item.color}</option> )
+                            }
+                        </select>
+                    </label>
+                    <br/>
+                    <label>备注信息：
+                        <textarea defaultValue={text} onChange={this.handleText}></textarea>
+                    </label>
+                    </form>
+                    <button onClick={this.handleSubmit}>提交</button>
+                    </div>
+            }
+        }
+        ReactDOM.render(<Student />, document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>

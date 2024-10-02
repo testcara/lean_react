@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root1"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            state = {
+                name: 'cara wang',
+                age: 18,
+                flag: true
+            }
+
+            changeAge() {
+                this.setState(
+                    { age: 20 }
+                )
+            }
+
+            changeState() {
+                this.setState(
+                    {flag: !this.state.flag}
+                )
+            }
+
+            render() {
+                return <div>
+                    <h1>类组件：event</h1>
+                    <p>姓名：{this.state.name}</p>
+                    <p>性别：{this.props.sex}</p>
+                    <p>年龄：{this.state.age}</p>
+                    <button onClick={this.changeAge.bind(this)}>更改年龄</button>
+                    <button onClick={()=>this.changeState()}>{this.state.flag ? 'yes' : 'no'}</button>
+                </div>
+            }
+        }
+        ReactDOM.render(<App sex='女' />, document.getElementById('root1'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root1"></div>
+    <script type="text/babel">
+        // 该input text为受限组件，因为value限制为123而无法接收用户输入
+        // 该input radio为受限组件，因为总是显示checked
+        // 该
+        class Hello extends React.Component {
+            render() {
+                return <div>
+                    <input type='text' value='123'/>
+                    <input type='radio' checked />
+                    <input type='checkbox' checked />
+                    <select value='A'>
+                        <option value='A'>A</option>
+                        <option value='B'>B</option>
+                    </select>
+                    </div>
+            }
+        }
+        ReactDOM.render(<Hello />, document.getElementById('root1'))
+
+    </script>
+</body>
+
+</html>

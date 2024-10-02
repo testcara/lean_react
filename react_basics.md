@@ -35,19 +35,31 @@ React 通过组件化的方式，鼓励开发者将 UI 拆分成独立、可复�
 ### 组件
 
 从功能上来说，一个组件是 UI（用户界面）的一部分，它拥有自己的逻辑和外观。组件可以小到一个按钮，也可以大到整个页面。
-从实现上来说，React 组件是返回标签的 JavaScript 函数。React 组件必须以大写字母开头，而 HTML 标签则必须是小写字母
+从实现上来说，React 组件是返回标签的 JavaScript 函数。React 组件必须以大写字母开头，而 HTML 标签则必须是小写字母。
+
+组件分为函数组件和类组件，也就是无状态组件和有状态组件。
 
 ```javascript
- function MyButton() {
+// 函数式组件
+function MyButton() {
   return (
     <button>I'm a button</button>
   );
 }
+// 类组件
+class Hello extends React.Component {
+  render() {
+    <button>I'm a button</button>
+  }
+}
 ```
+
+无状态组件没有state，只有props用来传参。有状态组件则有props，也有state。
+无状态组件性能优于有状态，所以能用无状态时优先使用无状态。
 
 ### JSX 编写标签
 
-上面所使用的标签语法被称为 JSX。JSX 比 HTML 更加严格。你必须闭合标签，如 <br />。一个组件只能返回一个 JSX 标签。
+上面所使用的标签语法被称为 JSX。JSX 比 HTML 更加严格。你必须闭合标签，如```<br/>```。一个组件只能返回一个 JSX 标签。
 
 ```javascript
 function AboutPage() {
