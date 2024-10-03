@@ -24,3 +24,5 @@
 - [非受限组件](src/form_2.html)
 - [表单提交](src/form_3.html) 
 - [表单简单方法封装](src/simple_form.html)
+- [表单校验](src/form_check.html)
+- [表单简单校验](src/form_simple_check.html)
