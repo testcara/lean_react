@@ -70,9 +70,7 @@ react-demo
 
 ## 组件通信
 
-以下仅列出关键行代码片段，并不是真实有意义的完整代码。查看完整代码，可到[react-demo/src/fzPros](./project_learning/react-demo/src/fzPros/)。
-
-父传子使用```props```，子传父用```props```和回调函数。
+父传子使用```props```，子传父用```props```和回调函数。下面示例中仅包含部分关键代码段。完整代码请参该[commit](https://github.com/testcara/react_learning/commit/51df9d83559985439bf6e60ab3bbf13db92daed3)
 
 ### 父组件向子组件传值
 
