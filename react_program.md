@@ -1,5 +1,14 @@
 # 项目实战
 
+- [项目实战](#项目实战)
+  - [环境准备](#环境准备)
+  - [项目搭建](#项目搭建)
+  - [组件通信](#组件通信)
+    - [父组件向子组件传值](#父组件向子组件传值)
+    - [子组件像父组件传值](#子组件像父组件传值)
+    - [组件参数校验](#组件参数校验)
+    - [爷组件向孙组件传值](#爷组件向孙组件传值)
+
 ## 环境准备
 
 需要安装node, webpack, yarn
@@ -118,11 +127,63 @@ react-demo
 
 当我们触发按键时，父组件就会得到相应的数据。
 
-### 组件校验
+### 组件参数校验
 
 - 安装```prop-types```
   
 ```sh
 yarn add -D prop-types
 ```
+
+- 在要使用```prop-types```的```js```文件中引入
+
+```javascript
+import PropTypes from 'prop-types'
+```
+
+- 定义组件的```propTypes```
+
+```javascript
+Child.propTypes = {
+    name: PropTypes.string
+}
+```
+
+这个时候，如果将```father.js```中```state```定义的```name```改成一个整数，则可以看到```console```报错:
+
+```javascript
+Failed prop type: Invalid prop `name` of type `number` supplied to `Child`, expected `string`.
+```
+这样就完成了传值类型的校验。
+
+如果把代码改成：
+
+```javascript
+Child.propTypes = {
+    name: PropTypes.string.isRequired
+}
+```
+
+并把```father.js```中```state```定义的```name```移除， 则可以看到```console```报错：
+
+```javascript
+Failed prop type: The prop `name` is marked as required in `Child`, but its value is `undefined`.
+```
+
+这样就完成了必须传哪些值的校验。我们还可以设置默认值，这样即使不传值的时候，也不会报错，而会采用默认值。
+
+```javascript
+Child.defaultProps = {
+    name: 'father'
+}
+```
+
+### 爷组件向孙组件传值
+
+让我们设置场景：
+爷爷组件有一个下拉框，可以选择颜色，爷爷选择了颜色，孙子显示该选中的颜色。
+
+
+
+
 
