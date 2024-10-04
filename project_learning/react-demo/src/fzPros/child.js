@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export class Child extends Component {
     constructor(props) { 
@@ -41,4 +42,13 @@ export class Child extends Component {
     }
 }
 
+Child.propTypes = {
+    name: PropTypes.string.isRequired,
+    msg: PropTypes.string
+}
+
+Child.defaultProps = {
+    name: 'father',
+    msg: 'good engineer'
+}
 export default Child
