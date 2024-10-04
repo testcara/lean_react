@@ -1,0 +1,9 @@
+{
+  "name": "project_learning",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
