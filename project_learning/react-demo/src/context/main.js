@@ -6,8 +6,9 @@ export class Main extends Component {
     render() {
         return (
             <div>
-                <MainContext.Provider value='casey'>
+                <MainContext.Provider value={{name:'casey', age: '10'}}>
                     Main page
+                    <hr/>
                     <Hello />
                 </MainContext.Provider>
             </div>

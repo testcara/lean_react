@@ -7,7 +7,10 @@ export class World extends Component {
   render() {
     return (
       <div>
-        World page -- {this.context}
+        <hr/>
+        World page<br/>
+        <p>name: {this.context.name}</p>
+        <p>age: {this.context.age}</p>
         <Worldson />
       </div>
     )

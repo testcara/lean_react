@@ -7,7 +7,9 @@ export class Hello extends Component {
     render() {
         return (
             <div>
-                Hello Page -- { this.context }
+                Hello Page<br/>
+                <p>name: {this.context.name}</p>
+                <p>age: {this.context.age}</p>
                 <World />
             </div>
         )
