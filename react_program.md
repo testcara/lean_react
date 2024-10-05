@@ -8,6 +8,8 @@
     - [子组件像父组件传值](#子组件像父组件传值)
     - [组件参数校验](#组件参数校验)
     - [爷组件向孙组件传值](#爷组件向孙组件传值)
+    - [```context```传值](#context传值)
+  - [生命周期](#生命周期)
 
 ## 环境准备
 
@@ -182,8 +184,89 @@ Child.defaultProps = {
 
 让我们设置场景：
 爷爷组件有一个下拉框，可以选择颜色，爷爷选择了颜色，孙子显示该选中的颜色。
+通过```props```进行传值的话，显示原理和父组件向子组件相同，都是第一个父亲传给他儿子这个第二个父亲，
+第二个父亲传给他儿子。我们这里不再详细列举，请看[commit](https://github.com/testcara/react_learning/commit/f403101bfd261fd3bcb85d8c89390486bc88a174)
 
+通过代码，我们可以看到一层一层的传值，还是很麻烦的。对于一个组件而言是全局的变量（例如，用户登陆信息、使用的语言等），我们不需要用```props```，而用```context``，是所有组件都可以很方便的获取到这些值。下面
+我们示例如何用```context```实现传值。
 
+### ```context```传值
+
+我们使用```context```来实现在爷孙组件间传值。我们除了创建了```context.js```，还创建了```main.js```作为爷组件，```hello.js```作为父组件，```world.js```作为子组件，```world-son.js```作为孙组件来帮助我们理解。下文仅截取了关键的代码段。具体的代码可以参考(commit)[#]
+
+- 创建单独的```context.js```
+
+```javascript
+import React from "react";
+
+const MainContext = React.createContext()
+
+export default MainContext
+```
+
+- 在爷组件中使用```MainContext.Provider```
+  
+```javascript
+import MainContext from './context'
+                <MainContext.Provider value='casey'>
+                    Main page
+                    <Hello />
+                </MainContext.Provider>
+```
+
+- 在父组件使用```context```
+
+```javascript
+static contextType = MainContext
+            <div>
+                Hello Page -- { this.context }
+                <World />
+            </div>
+```
+
+- 在子孙组件使用```context```
+
+```javascript
+// 在类结束后定义
+Worldson.contextType = MainContext
+// 然后再文中使用
+        <div>
+            Son of World page -- { this.context }
+        </div>
+```
+
+在父组件的用法和子孙组件的用法是能相互替代的，实现的效果一致。
+
+- context传多个值
+
+我们仅列出需要改变得的地方。完整代码可参考[commit](https://github.com/testcara/react_learning/commit/086e93f813c210b4f8cef4203d96f4d2eb098f85)。
+
+我们首先在爷组件中赋值。
+
+```javascript
+<MainContext.Provider value={{name:'casey', age: '10'}}>
+```
+
+然后在其他后代组件中使用。
+
+```javascript
+static contextType = MainContext
+            <div>
+                Hello Page<br/>
+                <p>name: {this.context.name}</p>
+                <p>age: {this.context.age}</p>
+                <World />
+            </div>
+```
+
+## 生命周期
+
+在React中只有类组件有生命周期。生命周期定义了决定了组件的开始到结束。了解清楚程序中生命周期，可以清楚
+的明白代码的执行过程和代码的执行顺序。
+
+生命周期分为四个阶段：组件初始化阶段、组件加载阶段、组件更新阶段、组件销毁阶段。
+
+- 初始化阶段
 
 
 
