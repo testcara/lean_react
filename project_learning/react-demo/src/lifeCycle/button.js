@@ -22,6 +22,7 @@ export class Button extends Component {
     }
 
     handleClick = () => {
+        // setState会触发render
         this.setState(
             {liked: !this.state.liked}
         )

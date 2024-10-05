@@ -266,7 +266,18 @@ static contextType = MainContext
 
 生命周期分为四个阶段：组件初始化阶段、组件加载阶段、组件更新阶段、组件销毁阶段。
 
-- 初始化阶段
+初始化阶段一般在```constructor```函数中去完成组件初始化。```componentWillMount```也是在```render```组件前完成。
 
+组件加载就是```render```和```componentDidMount```阶段。一般，只要组件状态发生变化，```render```一定会执行。
 
+``render```函数会插入```jsx```生成的```dom```结构，```react```会生成一个虚拟的```dom```树。
+在每一次组件更新时，React会通过```diff```算法比较更新前后的新旧```dom```树，比较以后，会找到
+最小的有差异的```dom```节点，并重新渲染。
 
+组件更新有```shouldComponentUpdate```， ```componentWillUpdate```， ```componentDidUpdate```，当```shouldComponentUpdate```返回```true```的时候，组件才会更新和加载。否则，前端页面不会有任何变化。为```true```时的执行顺序为：```WillUpdate```，```render```，```DidUpdate```。
+
+组件销毁使用是```componentWillUnmount```，用来卸载组件和销毁数据，清除所有的定时器和事件监听。
+
+关于生命周期的代码演示，请参考[commit](https://github.com/testcara/react_learning/commit/7d7996ec7b243dd61269b196c6ff32a3cf24bcf6)
+
+另外，我们还会在生命中发送一些请求。通常发送请求发生在```componentWillMount```和```componentDidMount```。更详细的发送请求的内容我们会在后面章节讲解。
