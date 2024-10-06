@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-export class Root extends Component {
+export class Perfroot extends PureComponent {
     state = {
         num: 0
     }
@@ -25,14 +25,7 @@ export class Root extends Component {
     }
 }
 
-class Header extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.num !== nextProps.num) {
-            return false
-        } else { 
-            return true
-        }
-    }
+class Header extends PureComponent {
     render() {
         console.log('header 组件渲染了')
         return (
@@ -43,14 +36,7 @@ class Header extends Component {
     }
 }
 
-class Main extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.num !== nextProps.num) {
-            return false
-        } else { 
-            return true
-        }
-    }
+class Main extends PureComponent {
     render() {
         console.log('main 组件渲染了')
         return (
@@ -61,7 +47,7 @@ class Main extends Component {
     }
 }
 
-class Footer extends Component {
+class Footer extends PureComponent {
     render() {
         console.log('footer 组件渲染了')
         return (
@@ -72,4 +58,4 @@ class Footer extends Component {
     }
 }
 
-export default Root
+export default Perfroot
