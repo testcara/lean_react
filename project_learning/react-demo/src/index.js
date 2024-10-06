@@ -6,9 +6,10 @@ import ReactDOM from 'react-dom/client';
 // import Root from './repeatRender/root';
 // import Functionroot from './repeatRender/functionRoot';
 // import Createref from './refExample/createRef';
-import Login from './hocFunctions/login';
-import Logout from './hocFunctions/logout';
-import Register from './hocFunctions/register';
+// import Login from './hocFunctions/login';
+// import Logout from './hocFunctions/logout';
+// import Register from './hocFunctions/register';
+import Main from './hocFunctions/hocpros';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,9 +20,10 @@ root.render(
     {/* <Functionroot /> */}
     {/* <Perfroot /> */}
     {/* <Createref /> */}
-    <Login />
+    {/* <Login />
     <Register />
-    <Logout />
+    <Logout /> */}
+    <Main />
   </React.StrictMode>
 );
 
