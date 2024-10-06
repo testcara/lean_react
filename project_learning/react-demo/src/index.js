@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Perfroot from './repeatRender/perfRoot';
+// import Perfroot from './repeatRender/perfRoot';
 // import App from './App';
 // import Index from './broEvents';
 // import Root from './repeatRender/root';
 // import Functionroot from './repeatRender/functionRoot';
+
+import Createref from './refExample/createRef';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +15,8 @@ root.render(
     {/* <Index /> */}
     {/* <Root /> */}
     {/* <Functionroot /> */}
-    <Perfroot />
+    {/* <Perfroot /> */}
+    <Createref />
   </React.StrictMode>
 );
 
