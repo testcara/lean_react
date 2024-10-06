@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
+import PropUsername from './username'
 
 export class Logout extends Component {
-    state = {
-        username: ''
-    }
-
-    componentDidMount() { 
-        let username = 'admin'
-        this.setState({
-            username: username
-        })
-    }
-    
     render() {
         return (
             <div>
-                <p>{ this.state.username } log out!</p>
+                <p>{ this.props.username } log out!</p>
 
             </div>
         )
     }
 }
 
-export default Logout
+export default PropUsername(Logout)

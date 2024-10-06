@@ -16,7 +16,6 @@ function PropUsername(CallbackComponent) {
         }
     }
     return NewComponent
-    
 }
 
 export default PropUsername

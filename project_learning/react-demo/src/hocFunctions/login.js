@@ -1,25 +1,14 @@
 import React, { Component } from 'react'
+import PropUsername from './username'
 
 export class Login extends Component {
-    state = {
-        username: ''
-    }
-
-    componentDidMount() { 
-        let username = 'admin'
-        this.setState({
-            username: username
-        })
-    }
-    
     render() {
         return (
             <div>
-                <p>{ this.state.username } log in!</p>
-
+                <p>{ this.props.username } log in!</p>
             </div>
         )
     }
 }
 
-export default Login
+export default PropUsername(Login)

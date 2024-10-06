@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
+import PropUsername from './username'
 
-export class Register extends Component {
-    state = {
-        username: ''
-    }
-
-    componentDidMount() { 
-        let username = 'admin'
-        this.setState({
-            username: username
-        })
-    }
-    
+export class Register extends Component {    
     render() {
         return (
             <div>
-                <p>{ this.state.username } registe!</p>
+                <p>{ this.props.username } registe!</p>
 
             </div>
         )
     }
 }
 
-export default Register
+export default PropUsername(Register)

@@ -5,8 +5,10 @@ import ReactDOM from 'react-dom/client';
 // import Index from './broEvents';
 // import Root from './repeatRender/root';
 // import Functionroot from './repeatRender/functionRoot';
-
-import Createref from './refExample/createRef';
+// import Createref from './refExample/createRef';
+import Login from './hocFunctions/login';
+import Logout from './hocFunctions/logout';
+import Register from './hocFunctions/register';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +18,10 @@ root.render(
     {/* <Root /> */}
     {/* <Functionroot /> */}
     {/* <Perfroot /> */}
-    <Createref />
+    {/* <Createref /> */}
+    <Login />
+    <Register />
+    <Logout />
   </React.StrictMode>
 );
 
