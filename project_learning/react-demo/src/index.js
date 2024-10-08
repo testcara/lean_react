@@ -13,11 +13,22 @@ import ReactDOM from "react-dom/client";
 // import Counter from "./hook/classCounter";
 // import HookCounter from "./hook/hookCounter";
 // import App from "./hook/multiState";
-import ComplexState from "./hook/complexState";
+// import ComplexState from "./hook/complexState";
+// import ClassLifecycle from "./hook/classLifecycle";
+// import UseEffect from "./hook/useEffect";
+// import ComplexEffect from "./hook/complexEffect";
+// import App from "./hook/complexEffect";
+// import ClassTimer from "./hook/classTimer";
+import FunctionTimer from "./hook/functionTimer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <FunctionTimer />
+    {/* <ClassTimer /> */}
+    {/* <App /> */}
+    {/* <UseEffect /> */}
+    {/* <ClassLifecycle /> */}
     {/* <App /> */}
     {/* <Index /> */}
     {/* <Root /> */}
@@ -31,6 +42,6 @@ root.render(
     {/* <Counter /> */}
     {/* <HookCounter /> */}
     {/* <App /> */}
-    <ComplexState />
+    {/* <ComplexState /> */}
   </React.StrictMode>
 );
