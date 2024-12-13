@@ -3,6 +3,11 @@
 - [React 高级知识](#react-高级知识)
   - [环境准备](#环境准备)
   - [项目搭建](#项目搭建)
+    - [项目初始化](#项目初始化)
+    - [安装脚手架](#安装脚手架)
+    - [创建项目](#创建项目)
+    - [项目目录](#项目目录)
+    - [index.js和React.StrictMode](#indexjs和reactstrictmode)
   - [父子组件通信](#父子组件通信)
     - [父组件向子组件传值](#父组件向子组件传值)
     - [子组件像父组件传值](#子组件像父组件传值)
@@ -25,6 +30,11 @@
     - [useEffect](#useeffect)
     - [useReducer](#usereducer)
     - [useRef](#useref)
+  - [路由](#路由)
+    - [单页面应用和前端路由](#单页面应用和前端路由)
+    - [react router的安装](#react-router的安装)
+    - [路由器](#路由器)
+    - [httpRequest和socketRequest](#httprequest和socketrequest)
 
 我们在```React Basics```中直接用```html```演示知识点。在本章的学习中，我们基于```React```项目结构去学习。
 
@@ -44,15 +54,18 @@ yarn包管理工具，类似于fedora的dnf。
 
 ## 项目搭建
 
-- 项目初始化
+### 项目初始化
 
 ```bash
 yarn init -y
 ```
 
-生成了```package.json```。
+生成了```package.json```。```package.json```是整个项目的描述文件，里面有两块内容比较重要：
 
-- 安装脚手架
+- ```dependencies```项目安装的依赖名称和版本信息。可以看到在构建完的项目中，已经帮开发者安装好了一些依赖：```react```， ```react-dom```，```react-scripts```等。前两者我们不在介绍。 ```create-react-app ```会把```webpack, babel, eslint```配置好合并在一个包里，方便开发人员使用，这个包就是```react-scripts```。
+- scripts中定义的是命令行工具中可以使用到的一些命令。
+
+### 安装脚手架
 
 ```bash
 yarn add -D create-react-app
@@ -66,7 +79,7 @@ yarn add -D create-react-app
 npx create-react-app --version # 5.0.1
 ```
 
-- 创建项目
+### 创建项目
   
 ```bash
 npx create-react-app react-demo
@@ -74,7 +87,7 @@ npx create-react-app react-demo
 
 生成了react-demo目录。然后执行```yarn start```去启动服务。如果出现找不到react-scripts的错误，那就直接```yarn install react-scripts```，然后再接着执行```yarn start```就可以了。
 
-- 项目目录
+### 项目目录
   
 ```bash
 carawang@project_learning %tree  -L 1 react-demo 
@@ -94,7 +107,22 @@ react-demo
 ```src```目录下的```reportWebVitals.js```是用来监测网页性能的。
 ```src```目录下的```setupTests.js```是用来做单元测试的。
 
-使用```yarn eject```会生成scripts和config目录。这俩目录是webpack相关的，只有当我们需要配置webpack的时候才需要执行该命令，否则不要这行该命令。这个命令是单向的，不可撤销。
+使用```yarn eject```会生成scripts和config目录。这俩目录是webpack相关的，只有当我们需要配置webpack的时候才需要执行该命令，否则不要这行该命令。这个命令是单向的，不可撤销。 
+
+### index.js和React.StrictMode
+
+项目入口文件```index.js```。当我们```yarn start```后访问浏览器看到的就是这个文件。
+我们会在```index.js```中看到```StrictMode```，其时用来检查项目中是否有潜在的风险的检测工具。类似于javascript中的严格模式。
+
+strictmode可以在代码中的任意地方使用，当然也可以直接用在index.js中，开启全局检测。strictmode默认为只在开发模式下运行，不会与生产模式冲突。其具体进行的检测有：
+
+- 识别具有不安全声明周期的组件
+- 有关旧式字符串ref用法的警告
+- 关于已启用的findDOMNode用法的警告
+- 检测意外的副作用
+- 检测遗留的context API
+
+在strictmode模式下，如果检测到代码有以上问题，react会在控制台中打印出相应的警告。
 
 ## 父子组件通信
 
@@ -940,4 +968,36 @@ function UseRef() {
 
 但是在类组件中，我们使用```createRef```，而在函数组件中，使用```useRef```。如代码中所说， ```useRef```返回的```ref```对象在组件的整个生命周期内是稳定的，不会改变。 ```createRef```返回的每次都是一个新对象。```useRef```通常用于在渲染间保持任何可变的值，以及访问```DOM```节点。它也可以用于在组件的整个生命周期内保存上一次的```props``` 或```state```。
 
-高级知识中，还有```router```，我们将在项目实践中去学习。
+## 路由
+
+### 单页面应用和前端路由
+
+在传统的web应用中，浏览器根据地址栏的url向服务器发送一个http请求，服务器根据url返回一个html界面。这种情况下，一个url对应一个html页面，一个web应对很多的html页面，这样的页面就是多页面应用。
+在多页面应用中，页面路由的控制由服务器端负责，这种路由方式为后端路由。
+在多页面应用中，每次页面切换都需要向服务器发送一次请求，页面使用到的静态资源也需要重新请求加载，存在一定的浪费。而且，页面的整体刷新对用户的体验也有影响，因为不同页面间往往存在共同的部分，例如导航栏，侧边栏等，页面整体刷新也会导致共同部分的刷新。
+单页面应用，视觉上的感觉仍然是多页面，因为url发生变化，页面的内容也会发生变化，但这只是逻辑上的多页面，实际上无论url如何变化，对应的html文件都是同一个。在单页面应用中，url发生变化并不会向服务器发送新的请求，所以“逻辑页面“的路由只能由前端负责。这种路由方式成为前端路由。
+react router就是一种前端路由的实现方式。通过使用react router可以让web应用根据不同的url渲染不同的组件。这样的组件渲染方式可以解决更加负责的业务场景。例如：当url的pathname为/list时，页面会渲染一个列表组件，当点击列表中的一项时，pathname更改为/item/:id，旧的列表组件会被卸载，取而代之的是一个新的单一项的详情组件。
+
+### react router的安装
+
+react router包含三个库：react-router, react-router-dom, react-router-native。
+react-router提供最基本的路由功能，使用时，我们不会直接安装react-router，而是根据应用运行的环境选择安装react-router-dom(在测试浏览器中使用)或react-router-native(在react-native)中使用。react-router-dom和react-router-native都依赖于react-router，所以在安装时，react-router也会自动安装，所以我们只需要安装其中之一就可以了。
+
+### 路由器
+
+react router通过router和route两个组件完成路由功能。router可理解为路由器，一个应用中只需要一个router实例，所有的路由配置组件route都定义为router的子组件。
+
+在web应用中，我们一般会使用对router进行包装的browerrouter或hashrouter两个组件。browerrouter使用html 5的history api实现ui和url的同步。hashrouter使用url的hash实现同步。
+
+browerrouter创建url形式为http://example.com/some/path，而hashrouter的为http://example.com/#/some/path。
+
+router会创建一个history对象，history用来根据URL，当URL发生变化时，router的后代组件会重新渲染。
+
+### httpRequest和socketRequest
+
+我们开发应用时，有时候不存储数据，而单纯向第三方发送request获取数据，然后展示数据。发送http请求还使用套接字根据场景不同通常配合使用。
+
+- httpRequest适用于可一次获取全部数据或者定时轮询获取静态数据的场景
+- socket适用于实时通讯，对延迟要求高的场景。
+
+例如提交表单就需要http就够了，而实时聊天则需要用到socket。

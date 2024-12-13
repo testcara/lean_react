@@ -3,7 +3,9 @@
 - [React Basics](#react-basics)
   - [从 JavaScript 到 React](#从-javascript-到-react)
   - [核心思想](#核心思想)
-  - [基础语法](#基础语法)
+  - [基础用法和语法](#基础用法和语法)
+    - [React引入方式](#react引入方式)
+    - [render](#render)
     - [组件](#组件)
     - [JSX 编写标签](#jsx-编写标签)
     - [显示数据](#显示数据)
@@ -30,7 +32,61 @@ React 通过组件化的方式，鼓励开发者将 UI 拆分成独立、可复�
 
 封装组件，各个组件维护自己的状态和ui，当状态变更，自动更新和渲染整个组件。
 
-## 基础语法
+## 基础用法和语法
+
+### React引入方式
+
+- 通过模块化的方式进行引入。需要配置一些开发环境。我们会在高级内容中讲到。
+- 直接在页面上通过script引入。如下:
+
+```javascript
+<script src='js/react.js'></script>
+<script src='js/react-dom.js'></script>
+```
+
+react.js是react的核心库，如组件、hooks、虚拟dom等，都在这个文件中。
+react-dom.js则是对真实dom的相关操作，如将虚拟dom渲染到真实dom中里，或者从真实的dom中获取节点。react-dom.js依赖react.js。所以在引入顺序上，一定是先引入react.js后引入react-dom.js。
+
+有时候我们还会看到引入了babel.js，babel是一个通用的javascript编译器，可以将最新的es6，es7的语法编译成es5的，使的老的浏览器和node.js的环境也可以解读新语法。babel.js还可以编译jsx为js，使浏览器可以识别。
+
+### render
+
+render方法时ReactDOM在开发时唯一常用的api。render方法用于将react生成的虚拟DOM生成到实际DOM中去。
+
+```javascript
+ReactDOM.render(element, container[, callback])
+```
+
+element是React生成的虚拟DOM，也叫ReactElement或者ReactNode。除此之外，也可以使用字符串去实现。container是要放置在element的容器中，它必须是一个已经存在的真实的DOM节点。callback是将ReactNode渲染到container之后的回调函数。
+完整的render代码如下：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root1">test</div>
+    <script type="text/babel">
+      ReactDOM.render("hello, react", document.getElementById('root1'), alert('replaced test!'))
+    </script>
+</body>
+
+</html>
+```
+
+我们通过浏览器打开这个文件，就会看到alert和‘hello, react’显示在界面上，而不会显示test。
+render方法通常用来渲染整个项目的跟组件，其他组件都是在跟组件中被一层层调用。
+在使用render方法时要注意container中如果有其他子内容都会被替换掉。另外render方法并不会修改container的其他特性，只会修改container的内容。
 
 ### 组件
 
@@ -139,7 +195,7 @@ const products = [
 export default function ShoppingList() {
   const listItems = products.map(product =>
     <li
-      key={product.id}
+      key={product.id}  
       style={{
         color: product.isFruit ? 'magenta' : 'darkgreen'
       }}
@@ -214,4 +270,4 @@ Hook 比普通函数更为严格。你只能在你的组件（或其他 Hook）�
 
 ### 组件间共享数据
 
-props位于那层组件，决定了其作用的范围，是组件之间独享还是共享。
+类（无论类组件还是函数组件）组件之间传值根据类组件之间关系和传值的方向的不同会用props, props+回调函数，context api, eventbus。这些内容会在后面的高级知识中详细讲解。
